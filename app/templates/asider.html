@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Now</title>
+    <meta name="description" content="Planeje suas viagens com nosso aplicativo de roteiros. Descubra restaurantes, pontos turísticos e mapas de cidades para criar roteiros incríveis de maneira fácil e intuitiva.">
+    <meta name="keywords" content="roteiro de viagem, planejamento de viagem, turismo, pontos turísticos, mapas, restaurantes, criar roteiros, destinos de viagem">
+    <meta name="author" content="ByteExplorers">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- icones do google 👇 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <aside class="aside-container" id="sidebar"> <!-- Menu lateral -->
+        <header class="aside-header">
+            <a href="index.html" class="logo-link"><img src="{{ url_for('static', filename='assets/imagens/Logo.png')}}" alt="logo" class="logo-img"></a>
+        </header>
+        <div class="container-nav">
+            <nav class="aside-nav" ><!--Navegação do site-->
+                <ul class="aside-lista">
+                    <li ><a href="{{ url_for('main.home')}}" class="list active"><i class="material-symbols-outlined">home</i> <span>Página Inicial</span></a></li>
+                    <li ><a href="{{ url_for('main.seusRoteiros')}}" class="list "><i class="material-symbols-outlined">light_mode</i> <span>Seus roteiros</span></a></li>
+                    <li ><a href="#" class="list"><i class="material-symbols-outlined">language</i> <span>Explorar</span></a></li>
+                    <li ><a href="#" class="list"><i class="material-symbols-outlined">notifications</i> <span>Notificações</span></a></li>
+                    <li ><a href="#" class="list"><i class="material-symbols-outlined">settings</i> <span>Configurações</span></a></li>
+                    <li ><a href="#" class="list"><i class="material-symbols-outlined">account_circle</i> <span>Perfil</span></a></li>
+                </ul>
+
+                <!-- botão para expandir menu lateral telas com width menor que 920 - inicio -->
+                <button id="open_btn">
+                    <span id="open_btn_icon" class="material-symbols-outlined">
+                        arrow_forward_ios
+                        </span>
+                </button>
+                <!-- botão para expandir menu lateral telas com width menor que 920 - final -->
+            </nav>
+
+        </div>
+        <div class="create-but"></div>
+            <a href="{{ url_for('main.criarRoteiro')}}" class="create-itinerary-btn">Criar novo roteiro</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- bloco de conteudo backend -->
+        {% block conteudo %}{% endblock %}
+
+    </main>
+    <script src="src/js/script.js"></script>
+    
+    <!-- Início Footer-->
+    
+    
+
+    <footer class="rodape">
+    <div id="footer_content">
+        <div id="footer_contacts">
+            <h1>TripNow</h1>
+            <p>Roteirizando seus sonhos</p>
+            <div id="footer_social_media">
+                <a href="#" class="footer-link" id="instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                    </a>
+                <a href="#" class="footer-link" id="facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                <a href="#" class="footer-link" id="whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+            </div>
+        </div>
+        <ul class="footer-list">
+                <li>
+                <h3>Parceiros</h3>
+                </li>
+                <li>
+                    <a href="#" class="footer-link">Hotéis</a>
+                </li>
+                <li>
+                <a href="#" class="footer-link">Pousadas</a>
+            </li>
+            <li>
+                <a href="#" class="footer-link">Resorts</a>
+            </li>    
+        </ul>
+        <ul class="footer-list">
+            <li>
+                <h3>Produtos</h3>
+            </li>
+            <li>
+                <a href="#" class="footer-link">App</a>
+            </li>
+            <li>
+                <a href="#" class="footer-link">Cupons</a>
+            </li>
+            <li>
+                <a href="#" class="footer-link">Planilha de gastos</a>
+            </li>    
+        </ul>
+        <div id="footer_subscribe">
+        <h3>Inscreva-se</h3>
+        <p>
+            Se inscreva para receber notícias sobre viagens
+
+        </p>
+        <div id="input_group">
+            <input type="email" id="email">
+            <button>
+                <i class="fa-regular fa-envelope"></i>
+            </button>
+        </div>
+        </div>
+    </div>
+    <div id="footer_copyright">
+        &#169
+        2024 todos os direitos reservados
+    </div>
+    </footer>
+    <!--Fim Footer-->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

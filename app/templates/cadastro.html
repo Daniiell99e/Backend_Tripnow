@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/stylescadastro.css">
+    <title>Formulario de cadastro</title>
+</head>
+<body>  
+    <div class="container img">
+        <div class="form-image">
+            <img src="../assets/imagens/Logo.png">
+        </div>
+        <main class="form">
+            <div class="form">
+                <form id="cadastroForm" action="#" method="post">
+                    <div class="form-header">
+                        <div class="title">
+                            <h1>Cadastre-se</h1>
+                        </div>
+                        <div class="login-button">
+                            <button><a href="#">Entrar</a></button>
+                        </div> 
+                    </div>
+                  
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="firstname">Primeiro Nome</label>
+                            <input id="firstname" type="text" name="firstname" placeholder="Digite seu primeiro nome" required>
+                            <span class="error-message" id="firstnameError">O campo "Primeiro Nome" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="lastname">Sobrenome</label>
+                            <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
+                            <span class="error-message" id="lastnameError">O campo "Sobrenome" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" placeholder="Digite seu email" required>
+                            <span class="error-message" id="emailError">Por favor, insira um email válido.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="number">Telefone</label>
+                            <input id="number" type="tel" name="number" placeholder="(xx) xxxxx-xxxx" required>
+                            <span class="error-message" id="numberError">Por favor, insira um número de telefone válido no formato (xx) xxxxx-xxxx.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="password">Senha</label>
+                            <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+                            <span class="error-message" id="passwordError">A senha deve ter pelo menos 6 caracteres.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="confirmpassword">Confirme sua senha</label>
+                            <input id="confirmpassword" type="password" name="confirmpassword" placeholder="Repita sua senha" required>
+                            <span class="error-message" id="confirmPasswordError">As senhas não coincidem.</span>
+                        </div>
+                    </div>
+                
+                    <div class="gender-inputs">
+                        <div class="gender-title">
+                            <h6>Gênero</h6>
+                        </div>
+
+                        <div class="gender-group">
+                            <div class="gender-input">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Feminino</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Masculino</label>
+                            </div>
+                            
+                            <div class="gender-input">
+                                <input type="radio" id="others" name="gender" value="others">
+                                <label for="others">Outros</label>
+                            </div>
+
+                            <div class="gender-input">
+                                <input type="radio" id="none" name="gender" value="none">
+                                <label for="none">Prefiro não informar</label>
+                            </div>
+                        </div>
+                        <span class="error-message" id="genderError">Por favor, selecione um gênero.</span>
+
+                        <div>
+                            <input type="checkbox" id="contrato" name="contrato">
+                            <label for="contrato">Eu aceito os <a href="#">termos e condições</a></label>
+                            <span class="error-message" id="contratoError">Você deve aceitar os termos e condições.</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="cancel-button" type="button"><a href="#">Cancelar</a></button>
+                        <button class="continue-button" type="submit">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+     <script src="../js/cadastro.js"></script>
+ </body>
+</html>

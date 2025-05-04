@@ -1,0 +1,1473 @@
+/* Reset de margens e preenchimentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+}
+
+html{
+    font-size: 16px;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/*menu lateral*/
+.aside-container{
+    position: fixed;
+    top: 0;
+    background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
+    padding: 20px;
+    width: 240px;
+    min-height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.35s;
+    z-index: 999;
+}
+
+/* div para afastar conteudo dentro do menu lateral */
+.container-nav{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8vh;
+}
+
+.aside-nav{
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aside-header a{
+    margin: 0;
+    padding: 0;
+}
+
+.logo-img{
+    max-width: 140px;
+    transition: transform 0.4s;
+    margin: 0;
+}
+
+.logo-img:hover{
+    transform: scale(1.05);
+}
+
+.aside-nav li {
+    margin: 15px 0;
+}
+
+.aside-nav a:hover {
+    color: white;
+}
+
+
+.aside-lista{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aside-lista li {
+    list-style: none;
+}
+
+.aside-lista i{
+    font-size: 24px;
+    margin-right: 8px
+}
+
+.aside-lista ul{
+    margin: 15px 0;
+}
+
+.aside-lista  a{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-text a.active{
+    color: white;  
+}
+
+.aside-nav a.active{
+    color: white;
+}
+
+.create-but{
+    flex-grow: 1;
+}
+
+.create-itinerary-btn {
+    background-color: #fff;
+    color: #ff6161;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    display: block;
+}
+
+.create-itinerary-btn:hover {
+    background-color: #ffdcdc;
+    color: #ff6161;
+}
+
+
+
+/*conteudo principal*/
+.main-content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 250px;
+    margin-right: 6px;
+    overflow: hidden;
+    flex-direction: column;
+}
+/*slide infinito imagem atrás da logo - inicio*/
+.but-int{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.create-itinerary-mob{
+    display: none;
+}
+
+.img-destaque{
+    width: 95%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.img-destaque_logo{
+    width: 25%;
+    display: block;
+    position: absolute;
+    bottom: auto;
+    z-index: 99;
+}
+
+
+.slides {
+    display: flex;
+    transition: transform 1s ease-in-out;
+    min-height: 200px;
+    max-height: 300px;
+}
+
+.slide {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 2s ease-in-out;
+    display: block;
+}
+
+.slide.zoom {
+    transform: scale(1.2);
+}
+
+.slide.reset {
+    transform: scale(1);
+}
+
+/*slide infito imagem atrás da logo - final*/
+
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* carrocel - inicio */
+.destinos{
+    margin-bottom: 16px;
+}
+
+.carroselcont{
+    background-color: rgba(0, 0, 0, 0.2);
+    width: auto;
+    padding: 0.5em 1.5em;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta as imagens que não estão visíveis no carrossel */
+    margin: 0 auto;
+    position: relative;
+}
+
+.destinos-cidades ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.destinos-cidades ul li img:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+.destino-cidades__card{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-cidade h3{
+    font-size: 0.7em;
+    text-align: center;
+}
+.carroselcont {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    touch-action: pan-x;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slidecarro {
+    min-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.destino-cidades_card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+
+
+.nome-cidade {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+
+
+    .dot {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.dot.active {
+    background: #333;
+}
+ 
+/* carrocel - final */
+
+
+#open_btn {
+    display: none; /* Esconde o botão lateral de expanção do menu em telas maiores */
+}
+
+/* começo da tela criar novo roteiro ---------------------------------------------------------------------*/
+.text_title {
+    color: #EA2B59;
+    margin-top: 9px;
+    font-size: 35px;
+}
+.text {
+    color: #FF5981;
+    margin-left: 33px;
+}
+.text1 {
+    color: #FF5981;
+    margin: 30px 0 20px 33px;
+    font-size: 35px;
+}
+.search-box {
+    margin-top: 10px;
+    margin-left: 33px;
+
+    background: #fff;
+    height: 40px;
+    width: 350px;
+    padding-left: 50px;
+    border-radius: 7px;
+    border-color: #cacaca;
+    outline-color: #EA2B59;
+  }
+
+.content-cr {
+    padding: 20px;
+    flex: 1;
+    background-color: #EBEBEB;
+    border-radius: 20px;
+  }
+
+.destinations {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 60%;
+    column-gap: 0;
+  }
+
+.destination {
+    width: 90%;
+    position: relative;
+    padding: 0;
+    max-height: 12.5rem;
+    min-height: 8rem;
+  }
+
+.destination img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+.destination h1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+
+
+.box-cr{
+  display: flex;
+  flex-direction: column;
+}
+
+.box-cr label, input{
+  width: 40%;
+  padding: 10px 5px 10px 5px;
+  border-radius: 5px;
+}
+
+.box-cr input{
+  border: 1px solid #a8a8a8;
+  outline: none;
+}
+
+.box-cr input[type="date"]{
+  border: 1px solid #a8a8a8;
+  outline: none;
+}
+
+.butons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  margin-top: 25vh;
+}
+
+.back-btn {
+  background-color: #f06292;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.back-btn:hover {
+  background-color: #e91e63;
+}
+
+/* Fim da tela criar novo roteiro----------------------------------------------------------------*/
+
+/* codigo Footer - inicio */
+:root{
+    --color-neutral-0: #0e0c0c;
+    --color-neutral-10: #171717;
+    --color-neutral-30: #a8a29e;
+    --color-neutral-40: #f5f5f5;
+
+    }
+    
+.rodape{
+    margin-left: 240px;
+    padding: 0;
+    box-sizing: content-box;
+    letter-spacing: 1px;
+    letter-spacing: 1px;
+    width: 87,2%;
+    height: 100%;
+    color: var(--color-neutral-40) ;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.footer-link{
+    text-decoration: none;
+}
+#footer_content {
+    background-color: var(--color-neutral-10);
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 3rem 3,5rem;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+    
+    
+    
+}
+#footer_contacts h1 {
+    margin-bottom: 0.75rem;
+}
+#footer_contacts p {
+    margin-bottom: 0.75rem;
+}
+#footer_social_media{
+    display: flex;
+    gap: 2rem;
+    margin-top: 1,5rem;
+}
+#footer_social_media .footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--color-neutral-40);
+    border-radius: 50%;
+    transition: all 0.4s;
+}
+
+#footer_social_media .footer-link:hover {
+    opacity: 0.8;
+
+}
+#footer_social_media .footer-link:i {
+    font-size: 1.25rem;
+}
+#instagram {
+    background: linear-gradient(#7f37c9, #ff2992, #ff9807)
+}
+#facebook {
+    background-color: #4267b3;
+}
+#whatsapp {
+    background-color: #25d366;
+}
+.footer-list{
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+}
+.footer-list .footer-link{
+    color: var(--color-neutral-30);
+    transition: all 0.4s;
+}
+.footer-list .footer-link:hover{
+    color: #DE1F83;
+}
+#footer_subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+#footer_subscribe p {
+    color: var(--color-neutral-30);
+}
+#input_group{
+    display: flex;
+    align-items: center;
+    background-color: var(--color-neutral-0);
+    border-radius: 4px;
+}
+#input_group input {
+    all: unset;
+    padding: 0.75rem;
+    width: 100%;
+}
+#input_group button {
+    background-color: #DE1F83 ;
+    border: none;
+    color: var(--color-neutral-40);
+    padding: 0px 1.25rem;
+    font-size: 1.125rem;
+    height: 100%;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+#input_group button:hover{
+    opacity: 0.8;
+}
+#footer_copyright{
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-neutral-0);
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+}
+/* codigo Footer - fim */
+
+
+/*---------------------------------------------------------------------------------------------------------*/
+/*Novos estilos*/
+/* Botão continuar tela criar roteiro -----------------------------------------------------------------*/
+.continue-btn-cr{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+.continue-cr {
+    background-color: #f06292;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+.continue-cr:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .btn-create{
+    background-color: #f06292;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px;
+  }
+/*------------------------------------------------------------------------------------------------*/
+
+  .destination, .hotel {
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .selected {
+    border: 2px solid #f06292;
+    background-color: #ffe4e1;
+  }
+
+.hidden {
+    display: none;
+  }
+
+  .step.hidden {
+    display: none;
+  }
+  
+  .hotel-list {
+    display: flex;
+    gap: 20px;
+  }
+  
+.hotel-card,
+.hotel-details-card,
+.hotel-confirmation-card {
+  border: 0px solid #ccc;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hotel-card img,
+.hotel-details-card img,
+.hotel-confirmation-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 200px
+}
+
+/*--Detalhes do Hotel--*/
+
+/* Container que organiza as duas colunas */
+.container {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding-bottom: 100px;
+}
+
+/* Coluna esquerda - imagem e nome do hotel */
+.hotel-left {
+  width: 60%;
+  position: relative;
+}
+
+.hotel-image {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.hotel-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.hotel-name {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hotel-description {
+  padding: 20px;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Coluna direita - endereço e avaliações */
+.hotel-right {
+  width: 40%;
+  padding: 20px;
+}
+
+.hotel-right h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.hotel-right p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.hotel-right h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.hotel-right strong {
+  font-weight: bold;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+/*Tela SeusRoteiros*/
+.main-content_kanban {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #ffe0f0;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tabs button {
+  background-color: #dbcad0;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.tabs button.active {
+  background-color: #e91e63;
+  color: white;
+}
+
+.kanban {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.day-column {
+  background-color: #ffc1e3;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.day-header {
+  background-color: #fff; /* Fundo branco */
+  border: 1px solid #ffc1e3; /* Borda cor de rosa */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.task-card {
+  background-color: #fff; /* Fundo branco */
+  border: 1px solid #ffc1e3; /* Borda cor de rosa */
+  border-radius:10xp;
+  padding:5px;
+  text-align: center;
+  cursor: pointer;
+  height: 400px;
+  width: 250px;
+  overflow-y: auto;
+}
+
+.add-task-container {
+  background-color: #fff;
+  border: 1px solid #ffc1e3; 
+  border-radius: 10px; 
+  padding: 10px; /* Espaçamento interno */
+  display: flex;
+  justify-content: center;
+  position: sticky; /* Fixa na parte inferior */
+  bottom: 0;
+}
+
+.add-task {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+}
+  
+  /* Estilos do Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 1% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* #tourForm{
+    max-height: 400px;
+  } */
+  
+  .close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .close-modal:hover {
+    color: #000;
+  }
+  
+  /* Estilos do Formulário */
+  .form-group {
+    margin-bottom: 7px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Estilos dos Cards de Passeio */
+  .tour-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #4CAF50;
+  }
+  
+  .tour-content h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  
+  .tour-details {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .tour-details i {
+    margin-right: 5px;
+  }
+  
+  .location {
+    color: #666;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .description {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .category {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .tour-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .edit-btn,
+  .remove-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .edit-btn {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .remove-btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .edit-btn:hover {
+    background-color: #ffb300;
+  }
+  
+  .remove-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Botões do formulário */
+  .save-btn,
+  .cancel-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .save-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #5a6268;
+  }
+/*---------------------------------------------------------------------------------------------------------*/
+.container_q {
+    flex-grow: 2;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #f8f8f8;
+  border-radius: 10px;
+  border: solid 1px #ebebeb;
+  padding: 15px 10px 20px 10px;
+  max-width: 300px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card img.destino-imagem {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin-top: -30px;
+  margin-left: 10px;
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  margin-right: auto;
+}
+
+.card p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.contador {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: solid 1px #ebebeb;
+  border-radius: 7px;
+}
+
+.tempo {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.tempo strong {
+  display: block;
+  font-size: 1.2em;
+  color: white;
+  background-color: #ff2992;
+  border-radius: 7px;
+  padding: 5px 0;
+}
+
+.tempo span {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.card-editar{
+  text-decoration: none;
+  color: #556;
+  margin-left: auto;
+  font-size: 13px;
+}
+
+/* Tela de detalhes da viagem ------------------------------------------------------------------------*/
+.container-detViagem {
+  background-color: #d4d4d4;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 20px;
+}
+.header-detViagem {
+  background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #bbb 1px solid;
+  text-align: center;
+  border-radius: 10px;
+}
+.header-detViagem h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 2.5em;
+  color: white;
+}
+.details-detViagem {
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+
+.details-detViagem img {
+  border-radius: 10px;
+  width: 60%;
+}
+
+
+.details-detViagem_details{
+  display: block;
+}
+
+.gallery-detViagem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.gallery-detViagem__img{
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.gallery-detViagem img {
+  width: 30%;
+  height: auto;
+  border-radius: 10px;
+}
+.itinerary-detViagem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 20px 0;
+}
+.expenses-detViagem {
+  display: flex;
+  justify-content: space-between;
+}
+.expenses-detViagem div {
+  width: 45%;
+}
+#countdown {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin: 20px 0;
+}
+
+.hotel-detViagem {
+  background-color: #f9f9f9;
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+
+.hotel-detViagem_info {
+  width: 50%;
+}
+
+.hotel-detViagem img {
+  width: 30rem;
+  height: 20rem;
+}
+
+.hotel-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.hotel-info {
+  padding: 20px;
+  border-radius: 8px;
+}
+.avaliacoes {
+  margin-top: 20px;
+}
+.avaliacao {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.stars {
+  color: #ffc107;
+}
+
+.details-buttons_edit{
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+}
+/* Tela de detalhes da viagem - fim-----------------------------------------------------------------------*/
+/* Ajustando sidebar com apenas icones. Tela para tabletes*/
+@media (width < 920px){
+    .aside-container{
+        width: 72px;
+    }
+
+    .aside-lista li > i {
+        width: 50px;
+    }
+
+    .aside-lista li > a > span{
+        opacity: 0;
+        display: none;
+    }
+
+    .create-itinerary-btn{
+        display: none;
+    }
+
+    .aside-header a > img{
+        width: 110%; 
+    }
+
+    .main-content {
+        transition: margin 0.4s;
+        margin-left: 78px;
+    }
+
+    .create-itinerary-mob{
+        background-color:#ff4848;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+        border-radius: 25px;
+        display: block;
+        width: 60%;
+        margin-top: -30px;
+        z-index: 9;
+    }
+   
+
+
+/* botão para expandir menu lateral - inicio */
+    #open_btn {
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: -10px;
+        background-color: #e3e9f7;
+        color: #ff4848;
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.5);
+          
+    }
+    
+    #open_btn_icon {
+        transition: transform .3s ease;
+        font-size: 10px;
+    }
+    
+    .open-sidebar #open_btn_icon {
+        transform: rotate(180deg);
+    }
+    
+    #sidebar.open-sidebar {
+        min-width: 250px;
+    }
+    /*-------------------------------------------------------------------------------------------------------------*/
+    #sidebar.open-sidebar li a span {
+        opacity: 100%;
+        display: inline-block;
+    }
+/* botão para expandir menu lateral - final*/
+ /*Responsividade do footer - início*/
+ #footer_content{
+    grid-template-columns: repeat(2,1fr);
+    gap:2rem;
+ }
+.rodape{
+    margin-left: 72px;
+}
+/* Resposividade para tablets da tela de criação de roteiros*/
+
+.text_title {
+    font-size: 30px;
+    margin-top: 9px;
+}
+.text {
+    font-size: 20px;
+}
+.text1 {
+    margin-top: 9px;
+    font-size: 28px;
+}
+.search-box {
+    width: 260px;
+  }
+
+.content-cr{
+  width: 100%;
+}
+
+.destinations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Padrão: 2 colunas */
+    gap: 10px;
+    column-gap: 10px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .destination {
+    width: 100%;
+    min-height: 7rem;
+    max-height: 10rem;
+  }
+
+  .destination img {
+    height: 8rem;
+    width: 100%;
+  }
+
+  .continue-btn-cr{
+    margin-right: 10%;
+}
+
+.prev-btn, .next-btn {
+    display: none;
+ }
+
+/*Tela de detalhes da viagem - inicio-----------------------------------------------------------------------*/
+.details-detViagem img {
+  width: 100%;
+}
+
+.hotel-detViagem_info {
+  width: 100%;
+}
+
+.hotel-detViagem img {
+  width: 20rem;
+  height: 10rem;
+}
+
+/*Tela de detalhes da viagem - fim-----------------------------------------------------------------------*/
+}
+/* Fim tela para tabletes */
+
+
+
+/*Começo de tela para celulares */
+@media (max-width: 480px){
+    .aside-container{
+        width: 50px;
+        padding: 13px;
+    }
+
+    .button-mobile{
+        display: flex;
+    }
+
+    .main-content{
+        margin-left: 60px;
+        margin-top: 5px;
+        padding: 5px;
+    }
+    #footer_content{
+        grid-template-columns: repeat(1,1fr);
+        gap:2rem;
+        padding: 2rem 3rem;
+     }
+     /* footer celular*/
+     .rodape{
+        margin-left: 20px;
+     }
+    /* criar novo roteiro tela 1 celular*/
+    
+   .search-box{
+    width: 250px;
+   } 
+
+.prev-btn, .next-btn {
+    display: none;
+ }
+
+}
+/* Fim tela para smartphones */
+/*curiosidades globais*/
+.local {
+  padding: 20px;
+  background-color: #fce4ec; /* Cor de fundo suave */
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Títulos */
+.sec-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Container flexível para curiosidades */
+.curiosidade {
+  display: flex;
+  justify-content: space-between; /* Distribui os cards igualmente */
+  flex-wrap: wrap; /* Permite quebra de linha */
+  gap: 20px; /* Espaço entre os cards */
+}
+
+/* Card individual */
+.localper-card {
+  background-color: #fff; /* Fundo branco */
+  border: 1px solid #ffc1e3; /* Borda rosa */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  overflow: hidden; /* Evita transbordamento */
+  text-align: center;
+  width: 30%; /* Cada card ocupa 30% da largura */
+}
+
+/* Imagem */
+.localpert-container img {
+  width: 100%; /* Ajusta largura da imagem */
+  height: 200px; /* Altura fixa */
+  object-fit: cover; /* Corta a imagem para caber */
+}
+
+/* Texto abaixo da imagem */
+.titlers{
+  padding: 10px;
+  font-size: 16px;
+  color: #555;
+  background-color: #f8f8f8;
+  font-weight: 500;
+}
+
+
+
+
+/* codigo carousel- inicio */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color:black;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.3s;
+    user-select: none;
+}
+.prev-btn {
+    margin-left: 3px;
+    left: -9px; /* Ajusta a posição para que fique antes da lista */
+    border-radius: 3px 0 0 3px;
+}
+
+.next-btn {
+    right: -8px; /* Ajusta a posição para que fique depois da lista */
+    margin-right: 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev-btn:hover,.next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+.card-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* As imagens serão cortadas se necessário, mas sem distorção */
+    border-radius: 50%; /* Apenas uma borda arredondada opcional */
+   
+  }
+  
+ 
+/* codigo carousel - final */

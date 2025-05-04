@@ -1,0 +1,184 @@
+/* Reset e configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 900px;
+    height: 70vh;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+/* Área da imagem */
+.form-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
+    padding: 2rem;
+}
+
+.form-image img {
+    width: 70%;
+}
+
+/* Área do formulário */
+.form-container {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Título */
+.form-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Campos de entrada */
+.input-box {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.input-box label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Opções extras */
+.options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.forgot-password {
+    text-decoration: none;
+    color: #DE1F83;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Botão de login */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #DE1F83;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.login-button:hover {
+    background-color: #be528a;
+}
+
+/* Login social */
+.social-login p {
+    margin-bottom: 0.5rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-icons button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.google-btn {
+    background-color: #DB4437;
+}
+
+.google-btn:hover {
+    background-color: #b0362b;
+}
+
+.facebook-btn {
+    background-color: #4267B2;
+}
+
+.facebook-btn:hover {
+    background-color: #365899;
+}
+
+/* Responsividade */
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .form-image {
+        width: 100%;
+        padding: 3rem;
+    }
+
+    .form-image img {
+        width: 50%;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .form-image {
+        display: none;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
