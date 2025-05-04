@@ -1,0 +1,2 @@
+# Backend_Tripnow
+O backend do site de Roteiro de Viagem será desenvolvido com Python e Flask, sendo responsável por gerenciar rotas, autenticação de usuários e comunicação com o banco de dados MySQL, onde serão armazenados os roteiros, destinos, pontos turísticos e dados dos usuários. A estrutura seguirá boas práticas, como o uso de variáveis de ambiente, suporte a CORS e organização em pastas. Esse backend dará suporte às funcionalidades do site, permitindo aos usuários planejar, criar e pesquisar roteiros de viagem de forma simples e eficiente.
