@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/stylescadastro.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylescadastro.css') }}">
     <title>Formulario de cadastro</title>
 </head>
 <body>  
     <div class="container img">
         <div class="form-image">
-            <img src="../assets/imagens/Logo.png">
+            <img src="{{ url_for('static', filename='assets/imagens/Logo.png') }}" alt="logo">
         </div>
         <main class="form">
             <div class="form">
-                <form id="cadastroForm" action="#" method="post">
+                <form id="cadastroForm" action="{{ url_for('main.processar_cadastro') }}" method="post">
                     <div class="form-header">
                         <div class="title">
                             <h1>Cadastre-se</h1>
@@ -99,6 +99,6 @@
             </div>
         </main>
     </div>
-     <script src="../js/cadastro.js"></script>
+     <script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
  </body>
 </html>
