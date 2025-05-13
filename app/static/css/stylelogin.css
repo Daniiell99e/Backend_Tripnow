@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
+    background: linear-gradient(to right, #f6f9fc, #e0f7fa);
 }
 
 /* Container principal */
@@ -110,25 +110,28 @@ body {
     background-color: #be528a;
 }
 
-/* Login social */
+
 .social-login p {
     margin-bottom: 0.5rem;
 }
 
 .social-icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.social-icons button {
-    width: 48%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
+.social-icon img {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    transition: transform 0.2s ease;
 }
+
+.social-icon img:hover {
+    transform: scale(1.1);
+}
+
 
 .google-btn {
     background-color: #DB4437;
