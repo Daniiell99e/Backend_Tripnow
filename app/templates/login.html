@@ -13,7 +13,8 @@
         </div>
         <div class="form-container">
             <h1>Entrar</h1>
-            <form action="{{ url_for('main.logar') }}" method="post">
+            <div id="mensagem-erro" style="color: red; margin-bottom: 10px;"></div>
+            <form id="login-form">
                 <div class="input-box">
                     <label for="username">Usuário</label>
                     <input id="username" type="text" name="username" placeholder="Digite seu usuário" required>
@@ -26,6 +27,9 @@
                     <a href="#" class="forgot-password">Esqueci minha senha</a>
                 </div>
                 <button type="submit" class="login-button">Entrar</button>
+                <div>
+                    <p>Novo por aqui? <a href="{{ url_for('main.cadastro') }}">Cadastre-se</a></p>
+                </div>
                 <div class="social-login">
                     <p>Ou entre com:</p>
                     <div class="social-icons">
@@ -40,5 +44,37 @@
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const mensagemErro = document.getElementById('mensagem-erro');
+
+    mensagemErro.textContent = '';
+
+    try {
+        const response = await fetch("{{ url_for('main.logar') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            window.location.href = result.redirect;
+        } else {
+            mensagemErro.textContent = result.mensagem || 'Erro ao realizar login.';
+        }
+    } catch (error) {
+        mensagemErro.textContent = 'Erro de conexão com o servidor.';
+        console.error('Erro na requisição:', error);
+    }
+});
+        </script>
 </body>
 </html>

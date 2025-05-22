@@ -17,3 +17,14 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<Usuario {self.nome_usuario}>'
+    
+class Genero(db.Model):
+    __tablename__ = 'Genero'
+
+    id_genero = db.Column(db.Integer, primary_key=True)
+    nome_genero = db.Column(db.String(50), nullable=False)
+
+    usuarios = db.relationship('User', backref='genero_relacionado', lazy=True)
+
+    def __repr__(self):
+        return f'<Genero {self.nome_genero}>'

@@ -78,8 +78,38 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
         isValid = false;
     }
 
+    // Enviar se estiver tudo válido
     if (isValid) {
-        alert('Formulário enviado com sucesso!');
-        this.submit();
+        const data = {
+            firstname: firstname.value,
+            lastname: lastname.value,
+            email: email.value,
+            number: number.value,
+            password: password.value,
+            confirmpassword: confirmPassword.value,
+            gender: gender ? gender.value : null,
+            contrato: contrato.checked
+        };
+
+        fetch('/addUsuarioFormulario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Cadastro realizado com sucesso!');
+                // Aqui você pode limpar o formulário, redirecionar ou atualizar a interface
+                document.getElementById('cadastroForm').reset();
+            } else {
+                alert('Erro ao cadastrar. Tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro de rede ou servidor.');
+        });
     }
 });
