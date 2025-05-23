@@ -15,6 +15,7 @@ def create_app():
 
     # Importa e registra o blueprint das rotas
     from .routes import main
+    from .routes_user import main
     app.register_blueprint(main)
 
     return app

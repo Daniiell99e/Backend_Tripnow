@@ -11,7 +11,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, #c9c9c9, #494949);
+    background: linear-gradient(to right, #f6f9fc, #e0f7fa);
     /* background: url('../assets/imagens/background.jpg') no-repeat center center/cover; */
 }
 

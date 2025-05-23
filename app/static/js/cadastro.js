@@ -101,6 +101,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
         .then(response => {
             if (response.ok) {
                 alert('Cadastro realizado com sucesso!');
+                window.location.href = "/";
                 // Aqui você pode limpar o formulário, redirecionar ou atualizar a interface
                 document.getElementById('cadastroForm').reset();
             } else {
