@@ -46,10 +46,12 @@
 
     <main class="main-content">
         <!-- bloco de conteudo backend -->
-        {% block conteudo %}{% endblock %}
+        {% block conteudo %}
+
+        
+        {% endblock %}
 
     </main>
-    <script src="src/js/script.js"></script>
     
     <!-- Início Footer-->
     
@@ -121,5 +123,8 @@
     </footer>
     <!--Fim Footer-->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/destinos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fluxoroteiro.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navegacaoroteiro.js') }}"></script>
 </body>
 </html>

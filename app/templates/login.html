@@ -15,6 +15,7 @@
             <h1>Entrar</h1>
             <div id="mensagem-erro" style="color: red; margin-bottom: 10px;"></div>
             <form id="login-form">
+                <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-box">
                     <label for="username">Usuário</label>
                     <input id="username" type="text" name="username" placeholder="Digite seu usuário" required>
@@ -51,6 +52,7 @@
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const mensagemErro = document.getElementById('mensagem-erro');
+    const csrfToken = document.getElementById('csrf_token').value;
 
     mensagemErro.textContent = '';
 
@@ -59,6 +61,7 @@
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
             },
             body: JSON.stringify({ username, password }),
         });
@@ -73,8 +76,8 @@
     } catch (error) {
         mensagemErro.textContent = 'Erro de conexão com o servidor.';
         console.error('Erro na requisição:', error);
-    }
-});
+        }
+    });
         </script>
 </body>
 </html>

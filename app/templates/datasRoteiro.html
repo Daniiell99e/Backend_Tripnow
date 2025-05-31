@@ -1,0 +1,30 @@
+{% extends 'asider.html' %}
+
+{% block conteudo %}
+
+<!-- Página 2: Inserção de datas -->
+            <div id="page-2" class="content-cr box-cr">
+                <h1 class="text_title">Criar novo roteiro</h1>
+                <h3>Detalhes da Viagem</h3>
+                <label for="city-name">Destino:</label>
+                <input type="text" id="city-name" readonly>
+                <label for="start-date">Data de Início:</label>
+                <input type="date" id="start-date" oninput="checkDates()">
+                <label for="end-date">Data de Fim:</label>
+                <input type="date" id="end-date" oninput="checkDates()">
+                <div class="butons">
+                    <button class="back-btn" id="back-btn" onclick="voltarUmaEtapa()">Voltar</button>
+                    <button class="continue-cr" class="botaoVoltar" id="botaoVoltar" disabled>Selecionar Hotel</button>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Verifica se a função showDates existe antes de chamá-la
+                    if (typeof showDates === 'function') {
+                        showDates();
+                    }
+                });
+            </script>
+
+{% endblock %}
