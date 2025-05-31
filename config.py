@@ -9,7 +9,7 @@ SQLALCHEMY_DATABASE_URI = (
         usuario='root',
         senha='AdmDan20_3',
         servidor='localhost',
-        database='trip_now'
+        database='tripnow'
     )
 )
 

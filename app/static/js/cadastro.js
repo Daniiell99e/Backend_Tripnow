@@ -90,27 +90,28 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
             gender: gender ? gender.value : null,
             contrato: contrato.checked
         };
-
+        const csrfToken = document.getElementById('csrf_token').value;
         fetch('/addUsuarioFormulario', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = "/";
-                // Aqui você pode limpar o formulário, redirecionar ou atualizar a interface
-                document.getElementById('cadastroForm').reset();
-            } else {
-                alert('Erro ao cadastrar. Tente novamente.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro de rede ou servidor.');
-        });
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken 
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json().then(data => ({ status: response.status, body: data })))
+.then(({ status, body }) => {
+    if (status === 200) {
+        alert(body.message);
+        window.location.href = "/";
+    } else {
+        alert(body.message); // Exibe mensagens como "Usuário já cadastrado com este e-mail"
+    }
+})
+.catch(error => {
+    console.error('Erro:', error);
+    alert('Erro de rede ou servidor. Tente novamente.');
+});
+
     }
 });

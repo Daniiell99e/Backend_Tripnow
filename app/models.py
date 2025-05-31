@@ -28,3 +28,31 @@ class Genero(db.Model):
 
     def __repr__(self):
         return f'<Genero {self.nome_genero}>'
+    
+class Destino(db.Model):
+    __tablename__ = 'Destino'
+
+    id_destino = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome_destino = db.Column(db.String(100), nullable=False)
+    desc_destino = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Destino {self.id_destino} - {self.nome_destino}>"
+
+class Parceiro(db.Model):
+    __tablename__ = 'Parceiro'
+
+    id_parceiro = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+
+    # Relação com Hotel
+    hoteis = db.relationship('Hotel', backref='parceiro', lazy=True)
+
+class Hotel(db.Model):
+    __tablename__ = 'Hotel'
+
+    id_hotel = db.Column(db.Integer, primary_key=True)
+    nome_hotel = db.Column(db.String(100), nullable=False)
+    endereco_hotel = db.Column(db.String(250), nullable=False)
+
+    id_parceiro = db.Column(db.Integer, db.ForeignKey('Parceiro.id_parceiro'), nullable=False)

@@ -15,10 +15,51 @@ def home():
 
 @main.route('/criarRoteiro')
 def criarRoteiro():
+    if session.get('usuario_logado') is None:
+        return redirect(url_for('main.login'))
     return render_template('Criar novo roteiro2.html')
+
+@main.route('/destinos', methods=['GET'])
+def get_destinos():
+    destinos = Destino.query.all()
+    resultado = []
+    for destino in destinos:
+        resultado.append({
+            'id_destino': destino.id_destino,
+            'nome_destino': destino.nome_destino,
+            'desc_destino': destino.desc_destino
+        })
+    return jsonify(resultado)
+
+@main.route('/datasroteiro')
+def datasRoteiro():
+    if session.get('usuario_logado') is None:
+        return redirect(url_for('main.login'))
+    return render_template('datasRoteiro.html')
 
 @main.route('/seusRoteiros')
 def seusRoteiros():
+    if session.get('usuario_logado') is None:
+        return redirect(url_for('main.login'))
     return render_template('SeusRoteiros.html')
+
+@main.route('/hotel')
+def hotel():
+    if session.get('usuario_logado') is None:
+        return redirect(url_for('main.login'))
+    return render_template('hotel.html')
+
+@main.route('/api/hoteis')
+def listar_hoteis():
+    hoteis = Hotel.query.all()
+    resultado = []
+    for hotel in hoteis:
+        resultado.append({
+            'id_hotel': hotel.id_hotel,
+            'nome_hotel': hotel.nome_hotel,
+            'endereco_hotel': hotel.endereco_hotel
+        })
+    return jsonify(resultado)
+
 
 

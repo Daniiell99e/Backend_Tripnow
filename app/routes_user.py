@@ -43,13 +43,18 @@ def add_usuario_formulario():
     senha = data.get("password")
     confirmar_senha = data.get("confirmpassword")
     genero = data.get("gender")
-    aceitou_termos = data.get("contrato")  # já vem como booleano
+    aceitou_termos = data.get("contrato")
 
     if not aceitou_termos:
         return jsonify({"message": "É necessário aceitar os termos"}), 400
 
     if senha != confirmar_senha:
         return jsonify({"message": "As senhas não coincidem"}), 400
+
+    # Verifica se o email já está cadastrado
+    usuario_existente = User.query.filter_by(email_usuario=email).first()
+    if usuario_existente:
+        return jsonify({"message": "Usuário já cadastrado com este e-mail"}), 409  # 409 = Conflict
 
     senha_hash = generate_password_hash(senha)
 
@@ -71,6 +76,7 @@ def add_usuario_formulario():
         print("Erro ao salvar:", e)
         traceback.print_exc()
         return jsonify({"message": "Erro ao salvar no banco de dados"}), 500
+
     
 @main.route('/sair')
 def sair():
