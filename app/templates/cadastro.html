@@ -46,6 +46,27 @@
                             <span class="error-message" id="numberError">Por favor, insira um número de telefone válido no formato (xx) xxxxx-xxxx.</span>
                         </div>
                         <div class="input-box">
+                            <label for="cep">CEP</label>
+                            <input id="cep" type="text" name="cep" placeholder="xxxxx-xxx" required>
+                            <span class="error-message" id="cepError">Por favor, insira um CEP válido.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="bairro">Bairro</label>
+                            <input id="bairro" type="text" name="bairro" placeholder="Digite seu bairro" required>
+                            <span class="error-message" id="bairroError">O campo "Bairro" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="cidade">Cidade</label>
+                            <input id="cidade" type="text" name="cidade" placeholder="Digite sua cidade" required>
+                            <span class="error-message" id="cidadeError">O campo "Cidade" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="complemento">Complemento</label>
+                            <input id="complemento" type="text" name="complemento" placeholder="Apartamento, bloco, etc. (opcional)">
+                            <span class="error-message" id="complementoError"></span>
+                        </div>
+
+                        <div class="input-box">
                             <label for="password">Senha</label>
                             <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
                             <span class="error-message" id="passwordError">A senha deve ter pelo menos 6 caracteres.</span>
@@ -100,6 +121,18 @@
             </div>
         </main>
     </div>
+    
      <script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
+      <script>
+document.getElementById('cep').addEventListener('input', function (e) {
+    let cep = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d{0,3})/, '$1-$2');
+    }
+    e.target.value = cep;
+});
+</script>
+
+
  </body>
 </html>
