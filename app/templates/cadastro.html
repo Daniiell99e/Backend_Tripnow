@@ -13,13 +13,14 @@
         </div>
         <main class="form">
             <div class="form">
-                <form id="cadastroForm" action="{{ url_for('main.processar_cadastro') }}" method="post">
+                <form id="cadastroForm" action="{{ url_for('main.add_usuario_formulario') }}" method="post">
+                    <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-header">
                         <div class="title">
                             <h1>Cadastre-se</h1>
                         </div>
                         <div class="login-button">
-                            <button><a href="#">Entrar</a></button>
+                            <button><a href="{{ url_for('main.login') }}">Entrar</a></button>
                         </div> 
                     </div>
                   
@@ -44,6 +45,27 @@
                             <input id="number" type="tel" name="number" placeholder="(xx) xxxxx-xxxx" required>
                             <span class="error-message" id="numberError">Por favor, insira um número de telefone válido no formato (xx) xxxxx-xxxx.</span>
                         </div>
+                         <div class="input-box">
+                             <label for="cep">CEP</label>
+                             <input id="cep" type="text" name="cep" placeholder="xxxxx-xxx" required>
+                             <span class="error-message" id="cepError">Por favor, insira um CEP válido.</span>
+                         </div>
+                         <div class="input-box">
+                             <label for="bairro">Bairro</label>
+                             <input id="bairro" type="text" name="bairro" placeholder="Digite seu bairro" required>
+                             <span class="error-message" id="bairroError">O campo "Bairro" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                             <label for="cidade">Cidade</label>
+                             <input id="cidade" type="text" name="cidade" placeholder="Digite sua cidade" required>
+                             <span class="error-message" id="cidadeError">O campo "Cidade" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="complemento">Complemento</label>
+                            <input id="complemento" type="text" name="complemento" placeholder="Apartamento, bloco, etc. (opcional)">
+                            <span class="error-message" id="complementoError"></span>
+                        </div>
+
                         <div class="input-box">
                             <label for="password">Senha</label>
                             <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
@@ -54,6 +76,7 @@
                             <input id="confirmpassword" type="password" name="confirmpassword" placeholder="Repita sua senha" required>
                             <span class="error-message" id="confirmPasswordError">As senhas não coincidem.</span>
                         </div>
+                        
                     </div>
                 
                     <div class="gender-inputs">
@@ -63,22 +86,22 @@
 
                         <div class="gender-group">
                             <div class="gender-input">
-                                <input type="radio" id="female" name="gender" value="female">
+                                <input type="radio" id="female" name="gender" value="2">
                                 <label for="female">Feminino</label>
                             </div>
 
                             <div class="gender-input">
-                                <input type="radio" id="male" name="gender" value="male">
+                                <input type="radio" id="male" name="gender" value="1">
                                 <label for="male">Masculino</label>
                             </div>
                             
                             <div class="gender-input">
-                                <input type="radio" id="others" name="gender" value="others">
+                                <input type="radio" id="others" name="gender" value="3">
                                 <label for="others">Outros</label>
                             </div>
 
                             <div class="gender-input">
-                                <input type="radio" id="none" name="gender" value="none">
+                                <input type="radio" id="none" name="gender" value="4">
                                 <label for="none">Prefiro não informar</label>
                             </div>
                         </div>
@@ -100,5 +123,15 @@
         </main>
     </div>
      <script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
+     <script>
+document.getElementById('cep').addEventListener('input', function (e) {
+    let cep = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d{0,3})/, '$1-$2');
+    }
+    e.target.value = cep;
+});
+</script>
+
  </body>
 </html>
