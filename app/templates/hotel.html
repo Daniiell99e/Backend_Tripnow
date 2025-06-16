@@ -10,18 +10,10 @@
                     <input type="text" class="search-box" placeholder="Ex. Atlântico Center">
                     <h2 class="text1"> Hotéis recomendados</h2>
                     <div class="hotel-list">
-                    <div class="hotel-card" data-hotel-id="1">
-                        <img src="../assets/imagens/hotel-1.jpg" alt="Atlantic Bussines">
-                        <h3>Atlantic Bussines</h3>
+                    
                     </div>
-                    <div class="hotel-card" data-hotel-id="2">
-                        <img src="../assets/imagens/hotel-2.jpg" alt="Hotel 2">
-                        <h3>Hotel Nacional</h3>
-                    </div>
-                    <div class="hotel-card" data-hotel-id="3">
-                        <img src="../assets/imagens/hotel-3.jpg" alt="Hotel 3">
-                        <h3>Hotel Comfort</h3>
-                    </div>
+                    <div class="continue-btn-cr">
+                      <button class="back-btn" id="back-btn" onclick="voltarUmaEtapa()">Voltar</button>
                     </div>
                 </div>
     
@@ -38,16 +30,18 @@
                     </div>
                     
                     <!-- Seção de endereço e avaliações -->
-                    <div class="hotel-right">
-                      <h2>Endereço</h2>
-                      <p>R. Sen. Dantas, 25 - Centro, Rio de Janeiro - RJ, 20031-202•(21) 3626-7000</p>
-                
-                      <h3>Avaliações</h3>
-                      <p><strong>⭐⭐⭐⭐⭐</strong> Excelente! Ótimo serviço e localização.</p>
-                      <p><strong>⭐⭐⭐⭐</strong> Muito bom, mas o Wi-Fi poderia ser melhor.</p>
-                    </div>
+                    <!-- Seção de endereço e avaliações -->
+                      <div class="hotel-right">
+                        <h2>Endereço</h2>
+                        <p id="hotel-endereco"></p>
+
+                        <h3>Avaliações</h3>
+                        <div id="hotel-avaliacoes"></div>
+                      </div>
+
                   </div>
                 <div class="continue-btn-cr">
+                <button class="back-btn" id="back-btn" onclick="voltarUmaEtapa()">Voltar</button>
                 <button id="continue-to-confirmation" class="continue-cr">Continuar</button>
                 </div>
                 </div>
@@ -59,11 +53,14 @@
                 <div class="hotel-confirmation-card">
                 <img id="confirm-hotel-image" src="" alt="Hotel Selecionado">
                 <h3 id="confirm-hotel-name"></h3>
+                <div id="confirm-hotel-value"></div>
                 <button id="remove-hotel" class="continue-cr">Remover</button>
                 </div>
                 <div class="continue-btn-cr">
+                  <button class="back-btn" id="back-btn" onclick="voltarUmaEtapa()">Voltar</button>
                 <button  onclick="showHorario()" id="continue-btn" class="continue-cr">Continuar</button>
                 </div>
             </div>
             </div>
+            
 {% endblock %} 

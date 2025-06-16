@@ -1,3 +1,13 @@
+// Máscara de CEP (aplicada uma única vez)
+document.getElementById('cep').addEventListener('input', function (e) {
+    let cep = e.target.value.replace(/\D/g, '');
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d{0,3})/, '$1-$2');
+    }
+    e.target.value = cep;
+});
+
+// Listener para o envio do formulário
 document.getElementById('cadastroForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -11,7 +21,14 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
     const gender = document.querySelector('input[name="gender"]:checked');
     const contrato = document.getElementById('contrato');
 
-    // Elementos de erro
+    // Endereço
+    const cep = document.getElementById('cep');
+    const rua = document.getElementById('rua');
+    const bairro = document.getElementById('bairro');
+    const cidade = document.getElementById('cidade');
+    const complemento = document.getElementById('complemento');
+
+    // Mensagens de erro
     const firstnameError = document.getElementById('firstnameError');
     const lastnameError = document.getElementById('lastnameError');
     const emailError = document.getElementById('emailError');
@@ -21,7 +38,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
     const genderError = document.getElementById('genderError');
     const contratoError = document.getElementById('contratoError');
 
-    // Limpar mensagens de erro
+    // Limpa os erros anteriores
     const errors = document.querySelectorAll('.error-message');
     errors.forEach(error => error.style.display = 'none');
     const inputs = document.querySelectorAll('.input-box input');
@@ -78,7 +95,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
         isValid = false;
     }
 
-    // Enviar se estiver tudo válido
+    // Se válido, envia
     if (isValid) {
         const data = {
             firstname: firstname.value,
@@ -88,30 +105,37 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
             password: password.value,
             confirmpassword: confirmPassword.value,
             gender: gender ? gender.value : null,
-            contrato: contrato.checked
+            contrato: contrato.checked,
+            cep: cep.value,
+            rua: rua.value,
+            bairro: bairro.value,
+            cidade: cidade.value,
+            complemento: complemento.value
         };
-        const csrfToken = document.getElementById('csrf_token').value;
-        fetch('/addUsuarioFormulario', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken 
-    },
-    body: JSON.stringify(data)
-})
-.then(response => response.json().then(data => ({ status: response.status, body: data })))
-.then(({ status, body }) => {
-    if (status === 200) {
-        alert(body.message);
-        window.location.href = "/";
-    } else {
-        alert(body.message); // Exibe mensagens como "Usuário já cadastrado com este e-mail"
-    }
-})
-.catch(error => {
-    console.error('Erro:', error);
-    alert('Erro de rede ou servidor. Tente novamente.');
-});
 
+        const csrfTokenInput = document.getElementById('csrf_token');
+        const csrfToken = csrfTokenInput ? csrfTokenInput.value : '';
+
+        fetch('/addUsuarioFormulario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            if (status === 200) {
+                alert(body.message);
+                window.location.href = "/";
+            } else {
+                alert(body.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro de rede ou servidor. Tente novamente.');
+        });
     }
 });

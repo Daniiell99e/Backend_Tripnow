@@ -54,12 +54,37 @@ def listar_hoteis():
     hoteis = Hotel.query.all()
     resultado = []
     for hotel in hoteis:
+        avaliacoes = []
+        for avaliacao in hotel.avaliacoes:
+            avaliacoes.append({
+                'id_avaliacao': avaliacao.id_avaliacao,
+                'nota_avaliacao': avaliacao.nota_avaliacao,
+                'data_avaliacao': avaliacao.data_avaliacao.strftime('%Y-%m-%d'),
+                'desc_avaliacao': avaliacao.desc_avaliacao
+            })
+
+        endereco_completo = f"{hotel.rua}, {hotel.bairro}, CEP: {hotel.cep}"
+
         resultado.append({
             'id_hotel': hotel.id_hotel,
             'nome_hotel': hotel.nome_hotel,
-            'endereco_hotel': hotel.endereco_hotel
+            'hotel_descricao': hotel.hotel_descricao,
+            'id_parceiro': hotel.id_parceiro,
+            'fk_id_destino': hotel.fk_id_destino,
+            'nome_destino': hotel.destino.nome_destino.lower().replace(' ', ''),
+            'telefone': hotel.telefone,
+            'endereco': endereco_completo,
+            'avaliacoes': avaliacoes
         })
+
     return jsonify(resultado)
+
+
+@main.route('/horarios')
+def horarios():
+    if session.get('usuario_logado') is None:
+        return redirect(url_for('main.login'))
+    return render_template('horarioroteiro.html')
 
 
 

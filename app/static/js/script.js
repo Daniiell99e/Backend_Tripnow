@@ -138,52 +138,7 @@ document.getElementById('open_btn').addEventListener('click', function () {
 // //---------------------------------------- Função para validar datas -------------------------------------------------------------
 
 // Função para validar datas e habilitar o botão para seleção de hotéis
-function checkDates() {
-  const startDateStr = document.getElementById('start-date').value;
-  const endDateStr = document.getElementById('end-date').value;
-  const hotelsButton = document.getElementById('botaoVoltar');
 
-  if (startDateStr && endDateStr) {
-    const startDate = new Date(startDateStr);
-    const endDate = new Date(endDateStr);
-
-    // Data de hoje sem horário (00:00:00) para comparar só a data
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (startDate < today) {
-      alert('A data de início não pode ser anterior à data de hoje.');
-      hotelsButton.disabled = true;
-    } else if (startDate > endDate) {
-      alert('A data de início não pode ser maior que a data de fim.');
-      hotelsButton.disabled = true;
-    } else {
-      hotelsButton.disabled = false;
-      updateSelectedCityWithDates(startDateStr, endDateStr);
-    }
-  } else {
-    hotelsButton.disabled = true;
-  }
-}
-
-function updateSelectedCityWithDates(startDate, endDate) {
-  const existingData = localStorage.getItem('selectedCity');
-
-  if (existingData) {
-    const cityData = JSON.parse(existingData);
-
-    // Atualiza as datas no objeto
-    cityData.startDate = startDate;
-    cityData.endDate = endDate;
-
-    // Salva de volta no localStorage
-    localStorage.setItem('selectedCity', JSON.stringify(cityData));
-
-    console.log("JSON atualizado no localStorage:", cityData);
-  } else {
-    alert('Nenhuma cidade foi selecionada ainda.');
-  }
-}
 
 
 // //---------------------------------------- Função para mostrar a página de hotéis ------------------------------------------------

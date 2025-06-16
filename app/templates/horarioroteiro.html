@@ -1,0 +1,29 @@
+{% extends 'asider.html' %}
+
+{% block conteudo %}
+<!-- Etapa 4: Informe os horários de início e fim dos seus passeios durante todos os dias -->
+            <div id="page-4"Class="modal-container">
+            <div class="modal-content">
+                <h2>Criar novo roteiro</h2>
+                <p>Informe os horários de início e fim dos seus passeios durante todos os dias</p>
+                <form id="new-itinerary-form">
+                <div class="input-group">
+                    <label for="start-time">
+                    <span class="icon">☀️</span> Hora de início dos passeios
+                    </label>
+                    <input type="time" id="start-time" value="05:00" required />
+                </div>
+                <div class="input-group">
+                    <label for="end-time">
+                    <span class="icon">🌙</span> Hora de fim dos passeios
+                    </label>
+                    <input type="time" id="end-time" value="19:00" required />
+                </div>
+                <button type="submit" onclick="salvarHorariosPasseios()"class="btn-create">Criar roteiro</button>
+                </form>
+            </div>
+            <button class="btn-close">×</button>
+            <button class="back-btn" id="back-btn" onclick="voltarUmaEtapa()">Voltar</button>
+            </div>
+
+{% endblock %}
