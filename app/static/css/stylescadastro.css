@@ -11,21 +11,21 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #f6f9fc, #e0f7fa);
+    background: linear-gradient(to bottom right, #c9c9c9, #494949);
     /* background: url('../assets/imagens/background.jpg') no-repeat center center/cover; */
 }
 
 
 .container{
     width: 80%;
-    height: 80vh;
+    height: 90vh;
     display: flex;
    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
    border-radius: 5px;
    background: linear-gradient(to bottom right, #FF6F61, #DE1F83);
 }
 
-.form-image{
+/* .form-image{
     width: 50%;
     display: flex;
     justify-content: center;
@@ -33,20 +33,35 @@ body{
     background-color:linear-gradient(to bottom right, #FF6F61, #DE1F83);
     padding: 7rem;
     border-radius: 5px;
+} */
+
+
+
+.main-cadastro{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:linear-gradient(to bottom right, #FF6F61, #DE1F83);
+    border-radius: 5px;
+    gap: 1em;
+    height: 100%;
 }
 
-
 .form-image img{
-    width: 31rem;
+    width: 29rem;
 }
 
 .form{
-    width: 90%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #fff;
+    padding: 1em;
+    border-radius: 10px;
 }
 
 .form-header {
@@ -142,6 +157,7 @@ body{
     color: #000000be;
 }
 .gender-group {
+    display: flex;
     margin-right:30px;
 }
 .gender-inputs{
@@ -304,7 +320,3 @@ body{
         text-align: center;
     }
 }
-
-
-
-

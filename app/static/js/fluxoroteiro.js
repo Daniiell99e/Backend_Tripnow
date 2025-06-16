@@ -55,3 +55,106 @@ function showDates() {
 }
 
 
+function checkDates() {
+  const startDateStr = document.getElementById('start-date').value;
+  const endDateStr = document.getElementById('end-date').value;
+  const hotelsButton = document.getElementById('botaoAvancar');
+
+  if (startDateStr && endDateStr) {
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+
+    // Data de hoje sem horário (00:00:00) para comparar só a data
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (startDate < today) {
+      alert('A data de início não pode ser anterior à data de hoje.');
+      hotelsButton.disabled = true;
+    } else if (startDate > endDate) {
+      alert('A data de início não pode ser maior que a data de fim.');
+      hotelsButton.disabled = true;
+    } else {
+      hotelsButton.disabled = false;
+      updateSelectedCityWithDates(startDateStr, endDateStr);
+    }
+  } else {
+    hotelsButton.disabled = true;
+  }
+}
+
+function updateSelectedCityWithDates(startDate, endDate) {
+  const existingData = localStorage.getItem('selectedCity');
+
+  if (existingData) {
+    const cityData = JSON.parse(existingData);
+
+    // Atualiza as datas no objeto
+    cityData.startDate = startDate;
+    cityData.endDate = endDate;
+
+    // Salva de volta no localStorage
+    localStorage.setItem('selectedCity', JSON.stringify(cityData));
+  } else {
+    alert('Nenhuma cidade foi selecionada ainda.');
+  }
+}
+
+
+function irParaHotel() {
+    // Exemplo: salvar algo no localStorage ou checar uma condição
+    window.location.href = '/hotel';
+
+    
+  }
+
+  function showHorario(idHotel) {
+  // Recupera a cidade já salva no localStorage
+  const selectedCity = localStorage.getItem('selectedCity');
+  if (!selectedCity) {
+    console.error('Nenhuma cidade selecionada no localStorage.');
+    return;
+  }
+
+  const cidade = JSON.parse(selectedCity);
+
+  // Atualiza o campo com o ID do hotel escolhido
+  cidade.hotelSelecionadoId = idHotel;
+
+  // Salva novamente no localStorage
+  localStorage.setItem('selectedCity', JSON.stringify(cidade));
+
+  // Redireciona para a página de horários
+  window.location.href = '/horarios'; // Se for arquivo local, pode ser 'horarios.html'
+}
+
+function salvarHorariosPasseios() {
+  const startTime = document.getElementById('start-time').value;
+  const endTime = document.getElementById('end-time').value;
+
+  const selectedCity = localStorage.getItem('selectedCity');
+  if (!selectedCity) {
+    console.error('Nenhuma cidade selecionada no localStorage.');
+    return;
+  }
+
+  const cidade = JSON.parse(selectedCity);
+
+  cidade.horarioInicioPasseio = startTime;
+  cidade.horarioFimPasseio = endTime;
+
+  localStorage.setItem('selectedCity', JSON.stringify(cidade));
+
+  console.log('Horários salvos:', cidade);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -45,6 +45,13 @@ def add_usuario_formulario():
     genero = data.get("gender")
     aceitou_termos = data.get("contrato")
 
+    # Novos campos de endereço
+    cep = data.get("cep")
+    rua = data.get("rua")
+    bairro = data.get("bairro")
+    cidade = data.get("cidade")
+    complemento = data.get("complemento")
+
     if not aceitou_termos:
         return jsonify({"message": "É necessário aceitar os termos"}), 400
 
@@ -54,23 +61,29 @@ def add_usuario_formulario():
     # Verifica se o email já está cadastrado
     usuario_existente = User.query.filter_by(email_usuario=email).first()
     if usuario_existente:
-        return jsonify({"message": "Usuário já cadastrado com este e-mail"}), 409  # 409 = Conflict
+        return jsonify({"message": "Usuário já cadastrado com este e-mail"}), 409
 
     senha_hash = generate_password_hash(senha)
 
     novo_usuario = User(
-        nome_usuario=f"{nome} {sobrenome}",
         primeiro_nome_usuario=nome,
         sobrenome_usuario=sobrenome,
         email_usuario=email,
         telefone_usuario=telefone,
         senha_usuario=senha_hash,
-        id_genero=int(genero) if genero else None
+        id_genero=int(genero) if genero else None,
+        cep_usuario=cep,
+        rua_usuario=rua,
+        bairro_usuario=bairro,
+        cidade_usuario=cidade,
+        complemento_usuario=complemento
     )
 
     try:
         db.session.add(novo_usuario)
         db.session.commit()
+
+        session['usuario_logado'] = email
         return jsonify({"message": "Usuário cadastrado com sucesso"}), 200
     except Exception as e:
         print("Erro ao salvar:", e)

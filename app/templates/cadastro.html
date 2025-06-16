@@ -7,11 +7,12 @@
     <title>Formulario de cadastro</title>
 </head>
 <body>  
-    <div class="container img">
-        <div class="form-image">
+    <div class="container">
+        
+        <main class="main-cadastro">
+            <div class="form-image">
             <img src="{{ url_for('static', filename='assets/imagens/Logo.png') }}" alt="logo">
         </div>
-        <main class="form">
             <div class="form">
                 <form id="cadastroForm" action="{{ url_for('main.add_usuario_formulario') }}" method="post">
                     <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
@@ -45,6 +46,32 @@
                             <input id="number" type="tel" name="number" placeholder="(xx) xxxxx-xxxx" required>
                             <span class="error-message" id="numberError">Por favor, insira um número de telefone válido no formato (xx) xxxxx-xxxx.</span>
                         </div>
+                         <div class="input-box">
+                             <label for="cep">CEP</label>
+                             <input id="cep" type="text" name="cep" placeholder="xxxxx-xxx" required>
+                             <span class="error-message" id="cepError">Por favor, insira um CEP válido.</span>
+                         </div>
+                         <div class="input-box">
+                             <label for="rua">Rua</label>
+                             <input id="rua" type="text" name="rua" placeholder="Digite sua rua" required>
+                             <span class="error-message" id="ruaError">O campo "Rua" é obrigatório.</span>
+                         </div>
+                         <div class="input-box">
+                             <label for="bairro">Bairro</label>
+                             <input id="bairro" type="text" name="bairro" placeholder="Digite seu bairro" required>
+                             <span class="error-message" id="bairroError">O campo "Bairro" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                             <label for="cidade">Cidade</label>
+                             <input id="cidade" type="text" name="cidade" placeholder="Digite sua cidade" required>
+                             <span class="error-message" id="cidadeError">O campo "Cidade" é obrigatório.</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="complemento">Complemento</label>
+                            <input id="complemento" type="text" name="complemento" placeholder="Apartamento, bloco, etc. (opcional)">
+                            <span class="error-message" id="complementoError"></span>
+                        </div>
+
                         <div class="input-box">
                             <label for="password">Senha</label>
                             <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
@@ -55,6 +82,7 @@
                             <input id="confirmpassword" type="password" name="confirmpassword" placeholder="Repita sua senha" required>
                             <span class="error-message" id="confirmPasswordError">As senhas não coincidem.</span>
                         </div>
+                        
                     </div>
                 
                     <div class="gender-inputs">
@@ -101,5 +129,6 @@
         </main>
     </div>
      <script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
+
  </body>
 </html>
