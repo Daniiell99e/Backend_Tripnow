@@ -652,13 +652,13 @@ document.getElementById('open_btn').addEventListener('click', function () {
 //   }
 // }
   
-//   // Função para calcular dias entre duas datas
-//   function calculateDaysBetween(startDate, endDate) {
-//     const start = new Date(startDate + "T00:00:00");
-//     const end = new Date(endDate + "T00:00:00");
-//     const difference = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-//     return difference + 1;
-//   }
+  // Função para calcular dias entre duas datas
+  function calculateDaysBetween(startDate, endDate) {
+    const start = new Date(startDate + "T00:00:00");
+    const end = new Date(endDate + "T00:00:00");
+    const difference = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+    return difference + 1;
+  }
   
 //   // Função para formatar datas
 //   function formatDate(date) {

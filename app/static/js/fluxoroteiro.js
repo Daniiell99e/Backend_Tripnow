@@ -1,7 +1,7 @@
 // Seleciona elementos fixos fora das funções
 const continueButton = document.getElementById('continue-btn');
 const inputDestino = document.querySelector('.search-box');
-let selectedCity = '';
+let dadosRoteiro = '';
 
 // Função para selecionar uma cidade
 function selectCity(cityName, event) {
@@ -15,14 +15,14 @@ function selectCity(cityName, event) {
   destinoElement.classList.add('selected');
 
   // Recupera o ID da cidade vindo do atributo data-id
-  const cityId = destinoElement.dataset.id;
+  const cityId = parseInt(destinoElement.dataset.id);
 
   // Armazena o nome e o ID da cidade no localStorage
   const cityData = {
-    id: cityId,
-    name: cityName
+    fk_id_destino: cityId,
+    nome_roteiro: cityName
   };
-  localStorage.setItem('selectedCity', JSON.stringify(cityData));
+  localStorage.setItem('dadosRoteiro', JSON.stringify(cityData));
 
   // Habilita o botão "Continuar"
   continueButton.disabled = false;
@@ -38,11 +38,10 @@ inputDestino.addEventListener('input', () => {
   continueButton.disabled = inputDestino.value.trim() === '';
 });
 
-
 //------------------------------------------------------------------------------------------------
 function showDates() {
   // Recupera o nome da cidade do LocalStorage
-  const cityFromStorage = localStorage.getItem('selectedCity');
+  const cityFromStorage = localStorage.getItem('dadosRoteiro');
 
   // Parse o JSON para obter o objeto cidade
   const cityData = JSON.parse(cityFromStorage);
@@ -50,10 +49,9 @@ function showDates() {
   // Atualiza o campo de entrada com o nome da cidade
   const cityNameInput = document.getElementById('city-name');
   if (cityNameInput) {
-    cityNameInput.value = cityData.name; // Use apenas o nome da cidade
+    cityNameInput.value = cityData.nome_roteiro; // Use apenas o nome da cidade
   }
 }
-
 
 function checkDates() {
   const startDateStr = document.getElementById('start-date').value;
@@ -76,30 +74,29 @@ function checkDates() {
       hotelsButton.disabled = true;
     } else {
       hotelsButton.disabled = false;
-      updateSelectedCityWithDates(startDateStr, endDateStr);
+      updateDadosRoteiroWithDates(startDateStr, endDateStr);
     }
   } else {
     hotelsButton.disabled = true;
   }
 }
 
-function updateSelectedCityWithDates(startDate, endDate) {
-  const existingData = localStorage.getItem('selectedCity');
+function updateDadosRoteiroWithDates(startDate, endDate) {
+  const existingData = localStorage.getItem('dadosRoteiro');
 
   if (existingData) {
     const cityData = JSON.parse(existingData);
 
     // Atualiza as datas no objeto
-    cityData.startDate = startDate;
-    cityData.endDate = endDate;
+    cityData.data_inicial = startDate;
+    cityData.data_final = endDate;
 
     // Salva de volta no localStorage
-    localStorage.setItem('selectedCity', JSON.stringify(cityData));
+    localStorage.setItem('dadosRoteiro', JSON.stringify(cityData));
   } else {
     alert('Nenhuma cidade foi selecionada ainda.');
   }
 }
-
 
 function irParaHotel() {
     // Exemplo: salvar algo no localStorage ou checar uma condição
@@ -110,51 +107,64 @@ function irParaHotel() {
 
   function showHorario(idHotel) {
   // Recupera a cidade já salva no localStorage
-  const selectedCity = localStorage.getItem('selectedCity');
-  if (!selectedCity) {
+  const dadosRoteiro = localStorage.getItem('dadosRoteiro');
+  if (!dadosRoteiro) {
     console.error('Nenhuma cidade selecionada no localStorage.');
     return;
   }
 
-  const cidade = JSON.parse(selectedCity);
+  const cidade = JSON.parse(dadosRoteiro);
 
   // Atualiza o campo com o ID do hotel escolhido
-  cidade.hotelSelecionadoId = idHotel;
+  cidade.id_hotel = idHotel;
 
   // Salva novamente no localStorage
-  localStorage.setItem('selectedCity', JSON.stringify(cidade));
+  localStorage.setItem('dadosRoteiro', JSON.stringify(cidade));
 
   // Redireciona para a página de horários
   window.location.href = '/horarios'; // Se for arquivo local, pode ser 'horarios.html'
 }
 
-function salvarHorariosPasseios() {
-  const startTime = document.getElementById('start-time').value;
-  const endTime = document.getElementById('end-time').value;
+//----------------------------------------------
+async function salvarRoteiro(event) {
+    event.preventDefault();
 
-  const selectedCity = localStorage.getItem('selectedCity');
-  if (!selectedCity) {
-    console.error('Nenhuma cidade selecionada no localStorage.');
-    return;
-  }
+    const passeio_inicio = document.getElementById('start-time').value;
+    const passeio_fim = document.getElementById('end-time').value;
+    const dados = JSON.parse(localStorage.getItem('dadosRoteiro'));
 
-  const cidade = JSON.parse(selectedCity);
+    if (!dados) {
+        alert("Erro: dadosRoteiro não encontrados no localStorage");
+        return;
+    }
 
-  cidade.horarioInicioPasseio = startTime;
-  cidade.horarioFimPasseio = endTime;
+    dados.passeio_inicio = passeio_inicio;
+    dados.passeio_fim = passeio_fim;
 
-  localStorage.setItem('selectedCity', JSON.stringify(cidade));
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  console.log('Horários salvos:', cidade);
+    try {
+        const resposta = await fetch('/criarRoteiro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            credentials: 'include',
+            body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+            const respostaJson = await resposta.json();
+            console.log("Sucesso:", respostaJson);
+            window.location.href = "/seusRoteiros";
+        } else {
+            const erroTexto = await resposta.text();
+            console.error("Erro do servidor:", erroTexto);
+            alert("Erro ao salvar roteiro. Veja o console.");
+        }
+    } catch (erro) {
+        console.error("Erro na comunicação:", erro);
+        alert("Erro na comunicação com o servidor: " + erro.message);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
