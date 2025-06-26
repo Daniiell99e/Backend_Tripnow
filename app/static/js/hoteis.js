@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Pega a cidade selecionada no localStorage
-    const selectedCity = localStorage.getItem('selectedCity');
-    if (!selectedCity) {
+    const dadosRoteiro = localStorage.getItem('dadosRoteiro');
+    if (!dadosRoteiro) {
       console.warn('Nenhuma cidade selecionada no localStorage.');
       return;
     }
 
-    const cidade = JSON.parse(selectedCity);
-    const idDestinoSelecionado = cidade.id;
+    const cidade = JSON.parse(dadosRoteiro);
+    const idDestinoSelecionado = cidade.fk_id_destino;
 
     // Faz a requisição para buscar os hotéis
     const resposta = await fetch('/api/hoteis');
@@ -118,3 +118,5 @@ function mostrarDetalhesHotel(hotel) {
     document.getElementById('hotel-selection').classList.remove('hidden');
   };
 }
+
+
