@@ -73,7 +73,6 @@ class Hotel(db.Model):
     id_hotel = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome_hotel = db.Column(db.String(100), nullable=False)
     hotel_descricao = db.Column(db.String(120), nullable=False)
-
     id_parceiro = db.Column(db.Integer, db.ForeignKey('Parceiro.id_parceiro'), nullable=False)
     fk_id_destino = db.Column(db.Integer, db.ForeignKey('Destino.id_destino'), nullable=False)
 
@@ -82,15 +81,16 @@ class Hotel(db.Model):
     bairro = db.Column(db.String(50), nullable=False)
     telefone = db.Column(db.String(20), nullable=False)
 
-    # Relacionamentos opcionais (caso deseje acessar dados da outra tabela diretamente)
     parceiro = db.relationship('Parceiro', backref='hoteis')
     destino = db.relationship('Destino', backref='hoteis')
 
+    # Ajustado: overlaps entre 'avaliacoes' e 'hotel_avaliacoes'
     avaliacoes = db.relationship(
         'Avaliacao',
         secondary='Hotel_Avaliacao',
-        backref=db.backref('hoteis', lazy='dynamic'),
-        lazy='dynamic'
+        backref=db.backref('hoteis', lazy='dynamic', overlaps="hotel_avaliacoes"),
+        lazy='dynamic',
+        overlaps="hotel_avaliacoes"
     )
 
     def __repr__(self):
@@ -117,11 +117,19 @@ class Hotel_Avaliacao(db.Model):
     id_hotel = db.Column(db.Integer, db.ForeignKey('Hotel.id_hotel'), primary_key=True)
     id_avaliacao = db.Column(db.Integer, db.ForeignKey('Avaliacao.id_avaliacao'), primary_key=True)
 
-    hotel = db.relationship('Hotel', backref=db.backref('hotel_avaliacoes', cascade='all, delete-orphan'))
-    avaliacao = db.relationship('Avaliacao', backref=db.backref('hotel_avaliacoes', cascade='all, delete-orphan'))
+    hotel = db.relationship(
+        'Hotel',
+        backref=db.backref('hotel_avaliacoes', cascade='all, delete-orphan', overlaps="avaliacoes,hoteis"),
+        overlaps="avaliacoes,hoteis"
+    )
+    avaliacao = db.relationship(
+        'Avaliacao',
+        backref=db.backref('hotel_avaliacoes', cascade='all, delete-orphan', overlaps="avaliacoes,hoteis"),
+        overlaps="avaliacoes,hoteis"
+    )
 
     def __repr__(self):
-        return f"<Hotel_Avaliacao hotel_id={self.d_hotel} avaliacao_id={self.id_avaliacao}>"
+        return f"<Hotel_Avaliacao hotel_id={self.id_hotel} avaliacao_id={self.id_avaliacao}>"
 
 
 class Avaliacao(db.Model):
@@ -134,3 +142,37 @@ class Avaliacao(db.Model):
 
     def __repr__(self):
         return f"<Avaliacao id={self.id_avaliacao} nota={self.nota_avaliacao}>"
+
+
+
+class Passeio(db.Model):
+    __tablename__ = 'Passeios'
+
+    id_Passeios = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    fk_id_roteiro = db.Column(db.Integer, db.ForeignKey('Roteiro.id_roteiro'), nullable=False)
+    fk_endereco_atracao = db.Column(db.Integer, db.ForeignKey('endereco_atracao.id_endereco_atracao'), nullable=False)
+
+    Passeio = db.Column(db.String(100), nullable=False)
+    Duracao = db.Column(db.Time, nullable=False)
+    Preco = db.Column(db.Numeric(10, 2), nullable=False)
+    Categoria = db.Column(db.String(50), nullable=False)
+    Descricao = db.Column(db.Text(length=400), nullable=True)
+    
+    Dia_passeio = db.Column(db.Integer, nullable=True)
+    Dia_semana = db.Column(db.String(20), nullable=True)
+    Data_passeio = db.Column(db.Date, nullable=True)
+
+    roteiro = db.relationship('Roteiro', backref='passeios')
+    endereco = db.relationship('EnderecoAtracao', back_populates='passeios')
+
+
+class EnderecoAtracao(db.Model):
+    __tablename__ = 'endereco_atracao'
+
+    id_endereco_atracao = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    cep = db.Column(db.String(10), nullable=False)
+    rua = db.Column(db.String(100), nullable=False)
+    bairro = db.Column(db.String(50), nullable=False)
+    complemento = db.Column(db.String(45), nullable=False)
+
+    passeios = db.relationship('Passeio', back_populates='endereco', lazy=True)

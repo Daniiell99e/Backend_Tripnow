@@ -12,6 +12,7 @@
 
     <!-- icones do google 👇 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <aside class="aside-container" id="sidebar"> <!-- Menu lateral -->
@@ -128,5 +129,7 @@
     <script src="{{ url_for('static', filename='js/navegacaoroteiro.js') }}"></script>
     <script src="{{ url_for('static', filename='js/hoteis.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/roteiro.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/passeios.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/listarpasseios.js') }}"></script>
 </body>
 </html>
